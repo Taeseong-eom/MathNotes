@@ -39,8 +39,18 @@ def getEquation():
     recognized_text = ""
     
     for field in ocr_result["images"][0]["fields"]:
+        # print(field.keys())
+        x = []; y = []
+        bounding_box = field["boundingPoly"]['vertices']
+        for box in bounding_box:
+            print(box, type(box))
+            # box = json.loads(box)
+            x.append(box['x']); y.append(box['y'])
+        Xmax = max(x); Xmin = min(x)
+        Ymax = max(y); Ymin = min(y)
+
         recognized_text += field["inferText"] + " "
     
     recognized_text = recognized_text.strip()
     print("OCR 인식된 전체 텍스트: " + recognized_text)
-    return recognized_text
+    return recognized_text, Xmax, Xmin, Ymax, Ymin

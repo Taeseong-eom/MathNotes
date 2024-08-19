@@ -4,12 +4,20 @@ import os
 from clovaAPI import getEquation
 from calculateSys import calString
 from GenImg import latex_to_handwritten_image
+from Paste import pasteResult, extract_black_part
 
 mycolor = "black"
 
 # 초기 좌표를 저장할 변수
 old_x = None
 old_y = None
+
+window = Tk()
+window.title("Handwritten Equation Solver")
+
+# 캔버스 크기 지정
+canvas = Canvas(window, bg='white', width=400, height=300)
+canvas.pack()
 
 # 그리는 함수, 선을 부드럽게 연결
 def paint(event):
@@ -44,11 +52,11 @@ def capture():
     im.save('capture/equation.png')
     
     # OCR로 수식을 추출
-    eq = getEquation()
+    eq, Xmax, Xmin, Ymax, Ymin = getEquation()
     print("OCR 인식 부분 : " + eq)
  
     # 수식 계산
-    latex_code = calString(eq)
+    latex_code = round(calString(eq), 2)
     print("result of cal : ", latex_code)
     latex_code_str = str(latex_code)  # 계산된 값을 문자열로 변환
     print("계산된 결과 : " + latex_code_str)
@@ -65,12 +73,16 @@ def capture():
         # 결과를 UI에 표시
         result_label.config(text=f"계산 결과: {latex_code_str}")
 
-window = Tk()
-window.title("Handwritten Equation Solver")
+        # 결과를 Canvas에 붙여넣기.
+        Xpaste = (Xmax-Xmin)/(2*len(eq))+Xmax
+        Ypaste = Ymin+(Ymax-Ymin)/2
+        image = extract_black_part()
+        print(f"Xp:{Xpaste}, Yp:{Ypaste}")
+ 
 
-# 캔버스 크기 지정
-canvas = Canvas(window, bg='white', width=400, height=300)
-canvas.pack()
+        pasteResult(canvas, image, Xpaste, Ypaste)
+
+ 
 
 # 계산 결과를 표시할 라벨 추가
 result_label = Label(window, text="계산 결과: ", font=("Helvetica", 14))
