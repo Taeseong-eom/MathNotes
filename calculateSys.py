@@ -10,6 +10,7 @@ testcase = [
 
 
 def calString(eq):
+    print("equation:", eq)
     # 전처리하고 등호 제거하고 삼각함수에는 앞에 math. 붙이기
     # 괄호 종류는 모두 소괄호로
     # 곱셉 나눗셈은 *, /로  

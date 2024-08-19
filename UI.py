@@ -35,8 +35,8 @@ def capture():
         os.makedirs('capture')
 
     # 캔버스의 좌표와 크기를 기준으로 스크린샷을 캡처
-    x0 = canvas.winfo_rootx() + 40
-    y0 = canvas.winfo_rooty() + 60
+    x0 = canvas.winfo_rootx() # + 40
+    y0 = canvas.winfo_rooty() # + 60
     x1 = x0 + canvas.winfo_width()
     y1 = y0 + canvas.winfo_height()
 
@@ -46,18 +46,14 @@ def capture():
     # OCR로 수식을 추출
     eq = getEquation()
     print("OCR 인식 부분 : " + eq)
-
+ 
     # 수식 계산
     latex_code = calString(eq)
-    output_file = "handwritten_latex_equation.png"
-    font_path = r"C:\Users\63807\Desktop\Study\FOM\하계 프로젝트\font\나눔손글씨 무궁화.ttf"  # 실제 폰트 경로로 변경
-
-    # 수식 계산
-    latex_code = calString(eq)
+    print("result of cal : ", latex_code)
     latex_code_str = str(latex_code)  # 계산된 값을 문자열로 변환
     print("계산된 결과 : " + latex_code_str)
     output_file = "handwritten_latex_equation.png"
-    font_path = r"C:\Users\63807\Desktop\Study\FOM\하계 프로젝트\font\나눔손글씨 무궁화.ttf"  # 실제 폰트 경로로 변경
+    font_path = 'font/나눔손글씨 무궁화.ttf'  # 실제 폰트 경로로 변경
 
     # 폰트 파일이 존재하는지 확인
     if not os.path.exists(font_path):
