@@ -45,6 +45,7 @@ def capture():
     
     # OCR로 수식을 추출
     eq = getEquation()
+    print("OCR 인식 부분 : " + eq)
 
     # 수식 계산
     latex_code = calString(eq)
@@ -54,6 +55,7 @@ def capture():
     # 수식 계산
     latex_code = calString(eq)
     latex_code_str = str(latex_code)  # 계산된 값을 문자열로 변환
+    print("계산된 결과 : " + latex_code_str)
     output_file = "handwritten_latex_equation.png"
     font_path = r"C:\Users\63807\Desktop\Study\FOM\하계 프로젝트\font\나눔손글씨 무궁화.ttf"  # 실제 폰트 경로로 변경
 
