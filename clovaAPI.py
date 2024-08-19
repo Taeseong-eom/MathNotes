@@ -4,8 +4,10 @@ import time
 import base64
 import json
 
-api_url = 'API_URL'
-secret_key = 'SECRET_KEY'
+
+
+api_url = '?'
+secret_key = '?'
 image_file = 'capture/equation.png'
 
 def getEquation():
