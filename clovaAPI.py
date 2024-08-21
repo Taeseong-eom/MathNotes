@@ -6,8 +6,8 @@ import json
 
 
 
-api_url = 'https://wl11rjimfa.apigw.ntruss.com/custom/v1/30859/ea5fcbc02c05c115b55bbe64469072ec865b2fb60e1ee0fe60eb45dfb4d7e2c7/general'
-secret_key = 'ZlRDYlNTZk5RRlFxWW9hY1RjQkR3dVRjSlFmVE1pQUY='
+api_url = 'api_url'
+secret_key = 'secret_key'
 image_file = 'capture/equation.png'
 
 def getEquation():
